@@ -33,7 +33,7 @@ const departmentResolvers = {
     fetchSingleDepartment: async (_, { id }, ctx) => {
       try {
         const { employee: { company } } = ctx;
-        const department = await findSingleEntity(Department, { company, id });
+        const department = await findSingleEntity(Department, { company, _id: id });
         return nonPaginatedGraphQLResponse(OK, RESOURCE_FETCHED_OK('Department'), department);
       } catch (err) {
         return graphQLErrorResolver(err, FETCH_ERROR_STATUS('Department'));

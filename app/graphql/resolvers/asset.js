@@ -35,7 +35,7 @@ const assetResolvers = {
     fetchSingleAsset: async (_, { id }, ctx) => {
       try {
         const { employee: { company } } = ctx;
-        const asset = await findSingleEntity(Asset, { company, id });
+        const asset = await findSingleEntity(Asset, { company, _id: id });
         return nonPaginatedGraphQLResponse(OK, RESOURCE_FETCHED_OK('Asset'), asset);
       } catch (err) {
         return graphQLErrorResolver(err, FETCH_ERROR_STATUS('Asset'));

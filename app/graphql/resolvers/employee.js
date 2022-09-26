@@ -37,7 +37,7 @@ const employeeResolvers = {
     fetchSingleEmployee: async (_, { id }, ctx) => {
       try {
         const { employee: { company } } = ctx;
-        const employee = await findSingleEntity(Employee, { company, id });
+        const employee = await findSingleEntity(Employee, { company, _id: id });
         return nonPaginatedGraphQLResponse(OK, RESOURCE_FETCHED_OK('Employee'), employee);
       } catch (err) {
         return graphQLErrorResolver(err, FETCH_ERROR_STATUS('Employee'));
