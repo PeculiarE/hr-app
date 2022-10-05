@@ -1,4 +1,4 @@
-import { GenericService, DepartmentService, CompanyService, AssetService } from '../../services';
+import { GenericService } from '../../services';
 import { helpers, constants } from '../../utils';
 import { Employee } from '../../models';
 
@@ -14,15 +14,13 @@ const {
   httpStatusCodes: { CREATED, OK }
 } = constants;
 const { createNewEntity, getCompanyEntity, findSingleEntity } = GenericService;
-const { getDepartment } = DepartmentService;
-const { getCompany } = CompanyService;
-const { getAssetByAssignee } = AssetService;
 
 const employeeResolvers = {
   Query: {
     fetchEmployees: async (_, { page }, ctx) => {
       try {
         const { employee: { company } } = ctx;
+        logger.info('=========================================');
         const { data, hasNextPage } = await getCompanyEntity(
           Employee, { page, filters: { company } }
         );
@@ -64,9 +62,9 @@ const employeeResolvers = {
   },
 
   Employee: {
-    company: async (parent) => getCompany(parent.company),
-    department: async (parent) => getDepartment(parent.department),
-    assets: async (parent) => getAssetByAssignee(parent._id)
+    company: async (parent, _, { loaders }) => loaders.companyLoader.load(parent.company),
+    department: async (parent, _, { loaders }) => loaders.deptLoader.load(parent.department || []),
+    assets: async (parent, _, { loaders }) => loaders.assetLoader.load(parent._id)
   }
 };
 

@@ -1,10 +1,8 @@
 import { Asset } from '../../models';
-import { GenericService, AssetService, CompanyService, EmployeeService } from '../../services';
+import { GenericService, AssetService } from '../../services';
 import { helpers, constants } from '../../utils';
 
 const { createNewEntity, getCompanyEntity, findSingleEntity } = GenericService;
-const { getCompany } = CompanyService;
-const { getEmployee } = EmployeeService;
 
 const { assignAsset } = AssetService;
 
@@ -68,8 +66,8 @@ const assetResolvers = {
   },
 
   Asset: {
-    company: async (parent) => getCompany(parent.company),
-    assignee: async (parent) => getEmployee(parent.assignee)
+    company: async (parent, _, { loaders }) => loaders.companyLoader.load(parent.company),
+    assignee: async (parent, _, { loaders }) => loaders.employeeLoader.load(parent.assignee)
   }
 };
 

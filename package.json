@@ -4,40 +4,40 @@
     "description": "A project using Node.js, GraphQL, and MongoDB",
     "main": "index.js",
     "dependencies": {
-      "apollo-server-express": "^2.25.2",
-      "app-root-path": "^3.0.0",
-      "bcrypt": "^5.0.1",
-      "cors": "^2.8.5",
-      "cross-env": "^7.0.2",
-      "dotenv": "^8.2.0",
-      "esm": "^3.2.25",
-      "express": "^4.17.1",
-      "graphql": "^15.5.0",
-      "graphql-scalars": "^1.9.3",
-      "helmet": "^3.22.0",
-      "joi": "^17.4.2",
-      "js-sha256": "^0.9.0",
-      "jsonwebtoken": "^8.5.1",
-      "mongoose": "^6.5.4",
-      "morgan": "^1.10.0",
-      "winston": "^3.3.3"
+        "apollo-server-express": "^2.25.2",
+        "app-root-path": "^3.0.0",
+        "bcrypt": "^5.0.1",
+        "cors": "^2.8.5",
+        "cross-env": "^7.0.2",
+        "dataloader": "^2.1.0",
+        "dotenv": "^8.2.0",
+        "esm": "^3.2.25",
+        "express": "^4.17.1",
+        "graphql": "^15.5.0",
+        "graphql-scalars": "^1.9.3",
+        "helmet": "^3.22.0",
+        "joi": "^17.4.2",
+        "js-sha256": "^0.9.0",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^6.5.4",
+        "morgan": "^1.10.0",
+        "winston": "^3.3.3"
     },
     "devDependencies": {
-      "eslint": "^7.9.0",
-      "eslint-config-airbnb-base": "^14.2.0",
-      "eslint-plugin-import": "^2.22.0",
-      "husky": "^7.0.4"
+        "eslint": "^7.9.0",
+        "eslint-config-airbnb-base": "^14.2.0",
+        "eslint-plugin-import": "^2.22.0",
+        "husky": "^7.0.4"
     },
     "scripts": {
-      "dev": "nodemon -r esm .",
-      "lint": "eslint --ext .js ./",
-      "start": "cross-env NODE_ENV=production node -r esm ."
+        "dev": "nodemon -r esm .",
+        "lint": "eslint --ext .js ./",
+        "start": "cross-env NODE_ENV=production node -r esm ."
     },
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/PeculiarE/hr-app.git"
+        "type": "git",
+        "url": "git+https://github.com/PeculiarE/hr-app.git"
     },
     "author": "PeculiarE",
     "license": "ISC"
-  }
-  
+}
