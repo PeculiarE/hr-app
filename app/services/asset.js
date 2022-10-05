@@ -13,4 +13,9 @@ export const assignAsset = async ({ id, company, assignee }) => Asset
     }
   ).then((entity) => entityCheck(entity, 'NOT FOUND'));
 
-export const getAssetByAssignee = async (assignee) => Asset.find({ assignee });
+export const getAssetsByAssignee = async (assigneeIds) => {
+  const assets = await Asset.find({ assignee: { $in: assigneeIds } });
+  return assigneeIds.map((assigneeId) => assets.filter(
+    (asset) => `${asset.assignee}` === `${assigneeId}`
+  ));
+};

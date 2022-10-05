@@ -1,5 +1,5 @@
 import { Department } from '../../models';
-import { GenericService, CompanyService } from '../../services';
+import { GenericService } from '../../services';
 import { helpers, constants } from '../../utils';
 
 const {
@@ -13,7 +13,6 @@ const {
   FETCH_ERROR_STATUS
 } = constants;
 const { createNewEntity, findSingleEntity, getCompanyEntity } = GenericService;
-const { getCompany } = CompanyService;
 
 const departmentResolvers = {
   Query: {
@@ -56,7 +55,7 @@ const departmentResolvers = {
   },
 
   Department: {
-    company: async (parent) => getCompany(parent.company)
+    company: async (parent, _, { loaders }) => loaders.companyLoader.load(parent.company)
   }
 };
 

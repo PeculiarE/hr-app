@@ -4,6 +4,7 @@ import { resolvers, typeDefs, schemaDirectives } from './app/graphql';
 import Logger from './config/logger';
 import { appConfig } from './config';
 import { helpers } from './app/utils';
+import { DataLoaderService } from './app/services';
 
 global.logger = Logger.createLogger({ label: 'HR_APP' });
 const app = express();
@@ -17,7 +18,8 @@ const server = new ApolloServer({
   context: ({ req }) => {
     const { employee } = req;
     return {
-      employee
+      employee,
+      loaders: DataLoaderService
     };
   },
   formatError: (err) => helpers.ResponseHelper.graphQLErrorResolver(err)
